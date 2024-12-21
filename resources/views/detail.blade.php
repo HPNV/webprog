@@ -64,5 +64,4 @@
             <button class="mt-4 bg-blue-600 text-white py-2 px-6 rounded-lg hover:bg-blue-700 transition duration-300">Submit</button>
         </div>
     </section>
-
 @endsection

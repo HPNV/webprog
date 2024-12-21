@@ -3,11 +3,18 @@
 @section('title', 'Home Page')
 
 @section('content')
-    <div class="bg-gradient-to-r from-blue-600 to-primary text-white p-8 mb-8 rounded-lg shadow-md">
-        <h1 class="text-3xl font-bold mb-4">Explore Amazing Places!</h1>
-        <p class="mb-4">Discover the best destinations you can visit. Check out our recommendations below!</p>
-        <a href="#places" class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600 transition-colors duration-300">See Places</a>
-    </div>
+    <section class="relative bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg shadow-md overflow-hidden mb-8">
+    <div class="absolute inset-0 bg-opacity-80 bg-gradient-to-br from-blue-700 to-blue-500"></div>
+        <div class="relative mx-auto max-w-screen-xl px-6 py-10 lg:py-12 text-center">
+            <h1 class="text-3xl font-extrabold sm:text-4xl mb-4">Explore <span class="text-red-400">Amazing Places</span></h1>
+            <p class="text-base sm:text-lg leading-relaxed mb-6">Discover breathtaking destinations to visit and create unforgettable memories. Check out our top recommendations for you!</p>
+            <div class="flex justify-center gap-4">
+            <a href="#places" class="inline-block" style="background-color: rgb(243, 97, 97); color: white; hover:bg-teal-600 shadow-md transition duration-300; padding: 12px 24px; border-radius: 8px; font-size: 14px; font-weight: 500;">
+                See Places
+            </a>
+            </div>
+        </div>
+    </section>
 
     <section id="places" class="mb-8">
         <div class="flex flex-col md:flex-row items-center mb-6 px-4">
