@@ -14,15 +14,23 @@
             <h2 class="text-gray-900 text-2xl font-semibold mb-4 md:mb-0">Recommended Places to Go</h2>
         </div>
 
-        <div id="placesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4">
+        <div id="placesGrid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 px-2">
             @foreach($randomPlaces as $place)
-                <div class="bg-white rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300">
-                    <img src="{{ $place->imagePath }}" alt="{{ $place->name }}" class="w-full h-48 object-cover rounded-t-lg">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all">
+                    <div class="relative">
+                        <img src="{{ $place->imagePath }}" alt="{{ $place->name }}" class="w-full h-64 object-cover"/>
+                    </div>
 
-                    <div class="p-6">
-                        <h3 class="font-bold text-lg place-name text-gray-900">{{ $place->name }}</h3>
-                        <p class="text-gray-600">{{ $place->description }}</p>
-                        <a href="{{ route('places.show', $place->placeId) }}" class="text-blue-600 hover:underline">Learn More</a>
+                    <div class="p-5 space-y-4">
+                        <div>
+                        <h3 class="text-xl font-bold text-gray-900">{{ $place->name }}</h3>
+                        <p class="text-gray-500 mt-1">{{ $place->description }}</p>
+                        </div>
+
+                        <a href="{{ route('places.show', $place->placeId) }}" 
+                        class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-3 rounded-lg transition-colors text-center block">
+                        Learn More
+                        </a>
                     </div>
                 </div>
             @endforeach
@@ -43,15 +51,23 @@
             </div>
         </div>
 
-        <div id="placesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4">
-        @foreach($places as $place)
-                <div class="place-card bg-white rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300">
-                    <img src="{{ $place->imagePath }}" alt="{{ $place->name }}" class="w-full h-48 object-cover rounded-t-lg">
+        <div id="placesGrid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 px-2">
+            @foreach($places as $place)
+                <div class="place-card bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all">
+                    <div class="relative">
+                        <img src="{{ $place->imagePath }}" alt="{{ $place->name }}" class="w-full h-48 object-cover rounded-t-lg">
+                    </div>
 
-                    <div class="p-6">
-                        <h3 class="font-bold text-lg place-name text-gray-900">{{ $place->name }}</h3>
-                        <p class="text-gray-600">{{ $place->description }}</p>
-                        <a href="{{ route('places.show', $place->placeId) }}" class="text-blue-600 hover:underline">Learn More</a>
+                    <div class="p-5 space-y-4">
+                        <div>
+                            <h3 class="place-name text-xl font-bold text-gray-900">{{ $place->name }}</h3>
+                            <p class="text-gray-500 mt-1">{{ $place->description }}</p>
+                        </div>
+
+                        <a href="{{ route('places.show', $place->placeId) }}" 
+                        class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-3 rounded-lg transition-colors text-center block">
+                        Learn More
+                        </a>
                     </div>
                 </div>
             @endforeach
