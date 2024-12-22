@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Hash;
 
 class User extends Model
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasFactory;
 
     /**
      * The attributes that are mass assignable.
