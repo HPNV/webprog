@@ -1,8 +1,10 @@
 <?php
 namespace App\Models;
 
+use DateTime;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Book extends Model
 {
@@ -14,13 +16,25 @@ class Book extends Model
 
     protected $fillable = [
         'bookId',
+        'placeId',
         'hotelId',
         'roomId',
         'userId',
         'checkIn',
         'checkOut',
-        'totalPrice',
     ];
+
+    protected static function booted()
+    {
+        static::creating(function ($book) {
+            $book->bookId = (string) Str::uuid(); // Generate a UUID for bookId
+        });
+    }
+
+    public function place()
+    {
+        return $this->belongsTo(Place::class, 'placeId');
+    }
 
     public function hotel()
     {

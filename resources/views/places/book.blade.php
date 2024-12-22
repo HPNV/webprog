@@ -42,6 +42,16 @@
                 </div>
 
                 <div class="mb-6">
+                    <label for="checkIn" class="block text-xl font-medium text-gray-900 mb-2">Check-in Date</label>
+                    <input type="date" id="checkIn" name="checkIn" class="w-full p-3 border border-gray-300 rounded-md" required>
+                </div>
+
+                <div class="mb-6">
+                    <label for="checkOut" class="block text-xl font-medium text-gray-900 mb-2">Check-out Date</label>
+                    <input type="date" id="checkOut" name="checkOut" class="w-full p-3 border border-gray-300 rounded-md" required>
+                </div>
+
+                <div class="mb-6">
                     <button type="submit" class="w-full bg-orange-500 text-white py-3 px-6 rounded-lg text-lg font-semibold hover:bg-orange-600 transition duration-300">
                         Book Now
                     </button>

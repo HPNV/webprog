@@ -26,7 +26,7 @@
                 @endguest
                 @auth
                     <li><a href="/" class="hover:text-gray-300 transition-colors duration-300 font-bold">Places</a></li>
-                    <li><a href="#history" class="hover:text-gray-300 transition-colors duration-300 font-bold">History</a></li>
+                    <li><a href="/history" class="hover:text-gray-300 transition-colors duration-300 font-bold">History</a></li>
                     <li><a href="#profile" class="hover:text-gray-300 transition-colors duration-300 font-bold">Profile</a></li>
                     <li>
                         <form action="{{ route('logout') }}" method="POST" class="inline">

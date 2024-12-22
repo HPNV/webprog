@@ -21,7 +21,6 @@ class UserFactory extends Factory
             'userId' => (string) Str::uuid(), // Generate a UUID for the id
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
-            // 'password' => bcrypt('password'), // Default password
             'password' => $this->faker->password(), // Default password
         ];
     }

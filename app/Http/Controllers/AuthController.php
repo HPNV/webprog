@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class AuthController extends Controller
 {
@@ -28,14 +29,12 @@ class AuthController extends Controller
         $password = $request->get('password');
 
         $user = User::where('email', $email)->first();
-
         // Check if the user exists and the password is correct
         if ($user && Hash::check($password, $user->password)) {
             Auth::login($user);
 
             return redirect()->route('home');
         }
-
         // If authentication fails
         return back()->withErrors(['email' => 'Invalid credentials.']);
     }
@@ -71,7 +70,8 @@ class AuthController extends Controller
         User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'userId' => (string) Str::uuid(),
+            'password' => $request->password,
         ]);
 
         $user = User::where('email', $request->email)->first();

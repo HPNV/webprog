@@ -57,11 +57,12 @@ class PlaceController extends Controller
         $hotel->rooms()->updateExistingPivot($room->roomId, ['available' => false]);
 
         Book::create([
+            'placeId' => $place->placeId,
             'hotelId' => $hotel->hotelId,
             'roomId' => $room->roomId,
             'userId' => $user->userId,
-            'checkIn' => $request->checkIn,
-            'checkOut' => $request->checkOut,
+            'checkIn' => $request->get('checkIn'),
+            'checkOut' => $request->get('checkOut'),
         ]);
 
         return redirect()->route('places.show', $place->placeId)->with('success', 'Room booked successfully.');

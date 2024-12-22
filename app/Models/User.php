@@ -22,6 +22,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'password',
     ];
 
     // Hidden attributes
@@ -44,5 +45,10 @@ class User extends Authenticatable
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = bcrypt($value);
+    }
+
+    public function books()
+    {
+        return $this->hasMany(Book::class, 'userId');
     }
 }

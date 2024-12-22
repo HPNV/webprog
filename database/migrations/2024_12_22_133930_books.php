@@ -14,9 +14,11 @@ return new class extends Migration
         Schema::create('books', function (Blueprint $table) {
             $table->uuid('bookId')->primary();
             $table->uuid('placeId');
+            $table->uuid('hotelId');
             $table->uuid('roomId');
             $table->uuid('userId');
-            $table->date('date');
+            $table->date('checkIn');
+            $table->date('checkOut');
             $table->timestamps();
         });
     }

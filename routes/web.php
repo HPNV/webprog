@@ -3,6 +3,7 @@
 use App\Http\Controllers\HotelController;
 use App\Http\Controllers\PlaceController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BookController;
 use Illuminate\Support\Facades\Route;
 
 // Public routes
@@ -20,7 +21,9 @@ Route::middleware('auth')->group(function () {
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('places/{placeId}/book', [PlaceController::class, 'showBook'])->name('places.book');
     Route::post('places/{placeId}/book', [PlaceController::class, 'book'])->name('places.book.submit');
+    Route::get('/history', [BookController::class, 'history'])->name('history');
 });
 
 // API routes
 Route::get('api/hotels/{hotelId}/rooms', [HotelController::class, 'getRooms']);
+
