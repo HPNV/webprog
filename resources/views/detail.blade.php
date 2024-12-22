@@ -62,9 +62,9 @@
             </div>
 
             <div class="mt-8">
-                <button class="w-full bg-orange-500 text-white py-3 px-6 rounded-lg text-lg font-bold hover:bg-orange-600 shadow-lg transition duration-300">
+                <a href="{{ route('places.book', ['placeId' => $place->placeId]) }}" class="w-full bg-orange-500 text-white py-3 px-6 rounded-lg text-lg font-semibold hover:bg-orange-600 transition duration-300 block text-center">
                     Book Now
-                </button>
+                </a>
             </div>
         </div>
     </section>

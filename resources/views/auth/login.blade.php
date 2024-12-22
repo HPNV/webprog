@@ -16,14 +16,17 @@
                     <label for="" class="block mt-3 text-2xl text-blue-700 text-center font-bold">
                         Login
                     </label>
-                    <form method="#" action="#" class="mt-12">
-                        
+
+                    <form id="loginForm" method="POST" action="{{ route('login') }}" class="mt-12" onsubmit="return validateForm()">
+                        @csrf
                         <div>
-                            <input type="email" placeholder="   Email" class="mt-1 block w-full border-none bg-blue-100 h-14 rounded-xl shadow-lg hover:bg-blue-200 focus:bg-blue-300 focus:ring-0">
+                            <input id="email" type="email" placeholder="Email" class="mt-3 block w-full border-none bg-blue-100 h-14 rounded-xl shadow-lg hover:bg-blue-200 focus:bg-blue-300 focus:ring-0 pl-5">
+                            <span id="emailError" class="text-red-500 text-sm hidden">Email is required.</span>
                         </div>
         
                         <div class="mt-8">                
-                            <input type="password" placeholder="   Password" class="mt-1 block w-full border-none bg-blue-100 h-14 rounded-xl shadow-lg hover:bg-blue-200 focus:bg-blue-300 focus:ring-0">                           
+                            <input id="password" type="password" placeholder="Password" class="mt-1 pl-5 block w-full border-none bg-blue-100 h-14 rounded-xl shadow-lg hover:bg-blue-200 focus:bg-blue-300 focus:ring-0">
+                            <span id="passwordError" class="text-red-500 text-sm hidden">Password is required.</span>                           
                         </div>
 
                         <div class="mt-8 flex">
@@ -78,5 +81,68 @@
             </div>
         </div>
     </div>
+
+    @if ($errors->any())
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const modal = document.getElementById('loginModal');
+                modal.classList.remove('hidden');
+            });
+        </script>
+    @endif
+
+
+    <div id="loginModal" class="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-50 hidden">
+        <div class="rounded-3xl shadow-2xl bg-white p-8 text-center sm:p-12">
+            <p class="text-sm font-semibold uppercase tracking-widest text-blue-500">
+                Email not registered
+            </p>
+
+            <h2 class="mt-6 text-3xl font-bold">You need to register first!</h2>
+
+            <a class="mt-8 inline-block w-full rounded-full bg-blue-600 py-4 text-sm font-bold text-white shadow-xl"
+              href="/register">Go to register</a>
+        </div>
+    </div>
+
+    <script>
+        const isLoggedIn = false;
+
+        document.addEventListener("DOMContentLoaded", function () {
+            if ({{ auth()->check() ? 'true' : 'false' }}) {
+                window.location.href = '{{ route('home') }}'; 
+            }
+        });
+
+        function validateForm() {
+            let isValid = true;
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            if (email === "") {
+                document.getElementById('emailError').classList.remove('hidden');
+                isValid = false;
+            } else {
+                document.getElementById('emailError').classList.add('hidden');
+            }
+
+            if (password === "") {
+                document.getElementById('passwordError').classList.remove('hidden');
+                isValid = false;
+            } else {
+                document.getElementById('passwordError').classList.add('hidden');
+            }
+
+            return isValid;
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('loginModal');
+            if (event.target == modal) {
+                modal.classList.add('hidden');
+            }
+        }
+    </script>
 </body>
 </html>

@@ -9,33 +9,29 @@ use Illuminate\Support\Facades\Hash;
 
 class User extends Model
 {
-    use HasFactory;
+    use HasApiTokens, HasFactory, Notifiable;
 
-    protected $primaryKey = 'userId';
-
-    // Tentukan bahwa 'userId' adalah UUID dan bukan auto-increment
-    public $incrementing = false;
-
-    // Tentukan tipe primary key sebagai string (UUID)
-    protected $keyType = 'string';
-
-    // Daftar kolom yang dapat diisi secara mass-assignment
+    /**
+     * The attributes that are mass assignable.
+     */
     protected $fillable = [
         'name',
         'email',
         'password',
     ];
 
-    // Kolom yang tidak akan ditampilkan ketika mengambil data
+    /**
+     * The attributes that should be hidden for serialization.
+     */
     protected $hidden = [
         'password',
+        'remember_token',
     ];
 
-    // Menghasilkan UUID secara otomatis saat membuat model baru
-    protected static function booted()
-    {
-        static::creating(function ($user) {
-            $user->userId = (string) Str::uuid(); // Generate UUID
-        });
-    }
+    /**
+     * The attributes that should be cast.
+     */
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
 }
