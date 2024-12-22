@@ -15,10 +15,17 @@
                 <span class="text-lg font-bold">Welcome, HPNV</span>
             </div>
                 <ul class="flex space-x-4">
-                <li><a href="/" class="hover:text-gray-300 transition-colors duration-300 font-bold">Places</a></li>
-                <li><a href="#history" class="hover:text-gray-300 transition-colors duration-300 font-bold">History</a></li>
-                <li><a href="#profile" class="hover:text-gray-300 transition-colors duration-300 font-bold">Profile</a></li>
-            </ul>
+                @guest
+                    <li><a href="{{ route('login') }}" class="hover:text-gray-300 transition-colors duration-300 font-bold">Login</a></li>
+                    <li><a href="{{ route('register') }}" class="hover:text-gray-300 transition-colors duration-300 font-bold">Register</a></li>
+                @endguest
+
+                @auth
+                    <li><a href="/" class="hover:text-gray-300 transition-colors duration-300 font-bold">Places</a></li>
+                        <li><a href="#history" class="hover:text-gray-300 transition-colors duration-300 font-bold">History</a></li>
+                        <li><a href="{{ route('profile') }}" class="hover:text-gray-300 transition-colors duration-300 font-bold">Profile</a></li>
+                @endauth
+             </ul>
         </div>
     </nav>
 

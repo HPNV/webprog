@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->uuid('userId')->primary(); // Auto-incrementing ID
-            $table->string('name'); // Name column
-            $table->string('email')->unique(); // Email column with unique constraint
-            $table->string('password'); // Password column
+            $table->id();
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->string('password'); // Kolom password
             $table->timestamps();
         });
     }
