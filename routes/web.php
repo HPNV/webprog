@@ -4,7 +4,7 @@ use App\Http\Controllers\HotelController;
 use App\Http\Controllers\PlaceController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
-
+Route::get('home', [PlaceController::class, 'index']);
 Route::get('/', [PlaceController::class, 'index']);
 Route::get('places/{placeId}', [PlaceController::class, 'show'])->name('places.show');
 Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');
