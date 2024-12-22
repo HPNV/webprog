@@ -9,7 +9,7 @@
             <div class="card bg-blue-700 shadow-lg w-full h-full rounded-3xl absolute transform rotate-6"></div>
         </div>
 
-        <div class="relative w-full sm:w-4/5 lg:w-3/4 xl:w-2/3 2xl:w-1/2 px-12 py-14 bg-white rounded-3xl shadow-lg mt-16 z-10">
+        <div class="relative w-full sm:w-5/5 lg:w-3/4 xl:w-2/3 2xl:w-1/2 px-12 py-14 bg-white rounded-3xl shadow-lg -mt-10 z-10">
             <div class="text-center font-bold mt-10 text-3xl">Book Your Stay at {{ $place->name }}</div>
             <div class="mt-3 text-center text-4xl font-bold">Make a Reservation</div>
 
