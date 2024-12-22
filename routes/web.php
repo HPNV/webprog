@@ -4,9 +4,17 @@ use App\Http\Controllers\HotelController;
 use App\Http\Controllers\PlaceController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
+use App\Models\History;
 
 Route::get('/', [PlaceController::class, 'index'])->name('home');
 Route::get('places/{placeId}', [PlaceController::class, 'show'])->name('places.show');
+
+
+Route::get('/history', function () {
+    $history = History::all();
+
+    return view('history', ['history' => $history]);
+});
 
 Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('login', [AuthController::class, 'login']);
