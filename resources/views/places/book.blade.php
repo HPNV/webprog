@@ -3,75 +3,87 @@
 @section('title', 'Book Your Stay')
 
 @section('content')
-    <div class="relative min-h-screen flex flex-col justify-center items-center bg-blue-50">
-        <div class="relative sm:max-w-3xl w-full">
-            <div class="card bg-blue-500 shadow-lg w-full h-full rounded-3xl absolute transform -rotate-6"></div>
-            <div class="card bg-blue-700 shadow-lg w-full h-full rounded-3xl absolute transform rotate-6"></div>
+    <div class="relative bg-gradient-to-r from-blue-700 to-primary h-64">
+        <div class="absolute inset-0 flex flex-col justify-center items-center text-white">
+            <h1 class="text-4xl font-bold">Book Your Stay at {{ $place->name }}</h1>
         </div>
+    </div>
 
-        <div class="relative w-full sm:w-5/5 lg:w-3/4 xl:w-2/3 2xl:w-1/2 px-12 py-14 bg-white rounded-3xl shadow-lg -mt-10 z-10">
-            <div class="text-center font-bold mt-10 text-3xl">Book Your Stay at {{ $place->name }}</div>
-            <div class="mt-3 text-center text-4xl font-bold">Make a Reservation</div>
-
+    <section class="container mx-auto p-6 md:flex md:space-x-6 mt-8">
+        <div class="md:w-2/3 bg-white p-6 rounded-lg shadow-lg">
             @if(session('success'))
-                <div class="alert alert-success mb-4 bg-green-100 text-green-700 border-l-4 border-green-500 p-4 rounded-md">
+                <div class="bg-green-100 text-green-700 border border-green-400 rounded-lg p-4 mb-6">
                     {{ session('success') }}
                 </div>
             @elseif(session('error'))
-                <div class="alert alert-danger mb-4 bg-red-100 text-red-700 border-l-4 border-red-500 p-4 rounded-md">
+                <div class="bg-red-100 text-red-700 border border-red-400 rounded-lg p-4 mb-6">
                     {{ session('error') }}
                 </div>
             @endif
 
-            <form action="{{ route('places.book.submit', $place->placeId) }}" method="POST" class="mt-12">
+            <form action="{{ route('places.book.submit', $place->placeId) }}" method="POST">
                 @csrf
-                <div class="flex gap-4 mb-6">
-                    <div class="w-1/2">
-                        <label for="hotelId" class="block text-xl font-medium text-gray-900">Select Hotel</label>
-                        <select id="hotelId" name="hotelId" class="mt-1 block w-full rounded-md border border-slate-300 bg-white px-3 py-4 placeholder-slate-400 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 sm:text-sm" required>
-                            <option value="">Select a Hotel</option>
-                            @foreach($hotels as $hotel)
-                                <option value="{{ $hotel->hotelId }}">{{ $hotel->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="w-1/2">
-                        <label for="roomId" class="block text-xl font-medium text-gray-900">Select Room</label>
-                        <select id="roomId" name="roomId" class="mt-1 block w-full rounded-md border border-slate-300 bg-white px-3 py-4 placeholder-slate-400 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 sm:text-sm" required>
-                            <option value="">Select a Room</option>
-                        </select>
-                    </div>
+                <div class="mb-6">
+                    <label for="hotelId" class="block text-xl font-medium text-gray-900 mb-2">Select Hotel</label>
+                    <select id="hotelId" name="hotelId" class="w-full p-3 border border-gray-300 rounded-md" required>
+                        <option value="">Select a Hotel</option>
+                        @foreach($hotels as $hotel)
+                            <option value="{{ $hotel->hotelId }}">{{ $hotel->name }}</option>
+                        @endforeach
+                    </select>
                 </div>
 
-                <div class="my-6">
-                    <label for="date" class="block text-xl font-medium text-gray-900">Date of Stay</label>
-                    <input type="date" id="date" name="date" class="mt-1 block w-full rounded-md border border-slate-300 bg-white px-3 py-4 placeholder-slate-400 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 sm:text-sm" required />
+                <div class="mb-6">
+                    <label for="roomId" class="block text-xl font-medium text-gray-900 mb-2">Select Room</label>
+                    <select id="roomId" name="roomId" class="w-full p-3 border border-gray-300 rounded-md" required>
+                        <option value="">Select a Room</option>
+                        <!-- Room options will be populated via JavaScript -->
+                    </select>
                 </div>
 
-                <div class="my-6">
-                    <label for="specialRequest" class="block text-xl font-medium text-gray-900">Special Request</label>
-                    <textarea name="specialRequest" id="specialRequest" cols="30" rows="5" class="resize-none w-full rounded-md border border-slate-300 p-5 font-semibold text-gray-300 placeholder-slate-400 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 sm:text-sm" placeholder="Any special requests or requirements?"></textarea>
+                <div class="mb-6">
+                    <label for="checkIn" class="block text-xl font-medium text-gray-900 mb-2">Check-in Date</label>
+                    <input type="date" id="checkIn" name="checkIn" class="w-full p-3 border border-gray-300 rounded-md" required>
                 </div>
 
-                <div class="text-center">
-                    <button type="submit" class="w-full bg-blue-700 px-8 py-5 text-sm font-semibold text-white rounded-lg shadow-lg hover:shadow-inner transition duration-500 ease-in-out transform hover:-translate-x hover:scale-105">
+                <div class="mb-6">
+                    <label for="checkOut" class="block text-xl font-medium text-gray-900 mb-2">Check-out Date</label>
+                    <input type="date" id="checkOut" name="checkOut" class="w-full p-3 border border-gray-300 rounded-md" required>
+                </div>
+
+                <div class="mb-6">
+                    <button type="submit" class="w-full bg-orange-500 text-white py-3 px-6 rounded-lg text-lg font-semibold hover:bg-orange-600 transition duration-300">
                         Book Now
                     </button>
                 </div>
             </form>
         </div>
-    </div>
+
+        <div class="md:w-1/3 mt-8 md:mt-0 bg-gradient-to-br from-gray-100 to-white p-6 rounded-lg shadow-lg">
+            <h3 class="text-xl font-semibold text-gray-900 mb-4">Booking Information</h3>
+            <p class="text-gray-600 mb-2"><strong>Place:</strong> {{ $place->name }}</p>
+            <p class="text-gray-600 mb-2"><strong>Location:</strong> {{ $place->address }}</p>
+            <p class="text-gray-600 mb-2"><strong>Rating:</strong> {{ $place->rating }} / 5</p>
+            <p class="text-gray-600 mb-2"><strong>Description:</strong> {{ $place->description }}</p>
+
+            <div class="h-64 bg-gray-200 rounded-lg shadow-inner mt-6">
+                <img src="{{ $place->mapImage }}" alt="Map" class="w-full h-full object-cover rounded-lg">
+            </div>
+        </div>
+    </section>
 
     <script>
         document.getElementById('hotelId').addEventListener('change', function () {
             const hotelId = this.value;
             const roomSelect = document.getElementById('roomId');
+
             roomSelect.innerHTML = '<option value="">Select a Room</option>';
 
             if (hotelId) {
                 fetch(`/api/hotels/${hotelId}/rooms`)
                     .then(response => response.json())
                     .then(data => {
+                        console.log(data);
                         if (data.rooms && data.rooms.length > 0) {
                             data.rooms.forEach(room => {
                                 const option = document.createElement('option');

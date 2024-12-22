@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
-    @vite('resources/css/app.css')
-</head>
-<body>
+@extends('layouts.app')
+
+@section('title', 'Book Your Stay')
+
+@section('content')
     <div class="font-sans">
         <div class="relative min-h-screen flex flex-col sm:justify-center items-center bg-blue-50">
             <div class="relative sm:max-w-3xl w-full">
@@ -16,37 +12,22 @@
                     <label for="" class="block mt-3 text-2xl text-blue-700 text-center font-bold">
                         Register
                     </label>
-
-                    @if ($errors->any())
-                        <div class="text-red-500 text-sm">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-
-                    <form id="registerForm" method="POST" action="{{ route('register') }}" class="mt-12" onsubmit="return validateForm()">
+                    <form method="POST" action="{{ route('register') }}" class="mt-12">
                         @csrf
                         <div>
-                            <input type="text" name="name" placeholder="Name" class="mt-1 pl-5 block w-full border-none bg-blue-100 h-14 rounded-xl shadow-lg hover:bg-blue-200 focus:bg-blue-300 focus:ring-0" required>
-                            <span id="nameError" class="text-red-500 text-sm hidden">Name is required.</span>
+                            <input type="text" name="name" placeholder="   Name" class="mt-1 block w-full border-none bg-blue-100 h-14 rounded-xl shadow-lg hover:bg-blue-200 focus:bg-blue-300 focus:ring-0" required>
                         </div>
 
                         <div class="mt-8">
-                            <input type="email" name="email" placeholder="Email" class="mt-1 pl-5 block w-full border-none bg-blue-100 h-14 rounded-xl shadow-lg hover:bg-blue-200 focus:bg-blue-300 focus:ring-0" required>
-                            <span id="emailError" class="text-red-500 text-sm hidden">Email is required.</span>
+                            <input type="email" name="email" placeholder="   Email" class="mt-1 block w-full border-none bg-blue-100 h-14 rounded-xl shadow-lg hover:bg-blue-200 focus:bg-blue-300 focus:ring-0" required>
                         </div>
 
-                        <div class="mt-8">                
-                            <input type="password" name="password" placeholder="Password" class="mt-1 pl-5 block w-full border-none bg-blue-100 h-14 rounded-xl shadow-lg hover:bg-blue-200 focus:bg-blue-300 focus:ring-0" required>                           
-                            <span id="passwordError" class="text-red-500 text-sm hidden">Password is required.</span>
+                        <div class="mt-8">
+                            <input type="password" name="password" placeholder="   Password" class="mt-1 block w-full border-none bg-blue-100 h-14 rounded-xl shadow-lg hover:bg-blue-200 focus:bg-blue-300 focus:ring-0" required>
                         </div>
 
-                        <div class="mt-8">                
-                            <input type="password" name="password_confirmation" placeholder="Confirm Password" class="mt-1 pl-5 block w-full border-none bg-blue-100 h-14 rounded-xl shadow-lg hover:bg-blue-200 focus:bg-blue-300 focus:ring-0" required>                           
-                            <span id="confirmPasswordError" class="text-red-500 text-sm hidden">Password confirmation is required.</span>
+                        <div class="mt-8">
+                            <input type="password" name="password_confirmation" placeholder="   Confirm Password" class="mt-1 block w-full border-none bg-blue-100 h-14 rounded-xl shadow-lg hover:bg-blue-200 focus:bg-blue-300 focus:ring-0" required>
                         </div>
 
                         <div class="mt-8">
@@ -93,60 +74,4 @@
             </div>
         </div>
     </div>
-
-    @if(session('email_exists'))
-        <div id="emailExistsModal" class="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-50">
-            <div class="rounded-3xl shadow-2xl bg-white p-8 text-center sm:p-12">
-                <p class="text-sm font-semibold uppercase tracking-widest text-blue-500">
-                    Registration Error
-                </p>
-
-                <h2 class="mt-6 text-3xl font-bold">This email is already registered.</h2>
-
-                <a href="/login" class="mt-8 inline-block w-full rounded-full bg-blue-600 py-4 text-sm font-bold text-white shadow-xl">Go to Login</a>
-            </div>
-        </div>
-    @endif
-
-    <script>
-        <script>
-            function validateForm() {
-                let isValid = true;
-
-                const email = document.getElementById('email').value;
-                const password = document.getElementById('password').value;
-                const passwordConfirmation = document.querySelector('input[name="password_confirmation"]').value;
-
-                if (email === "") {
-                    document.getElementById('emailError').classList.remove('hidden');
-                    isValid = false;
-                } else {
-                    document.getElementById('emailError').classList.add('hidden');
-                }
-
-                if (password === "") {
-                    document.getElementById('passwordError').classList.remove('hidden');
-                    isValid = false;
-                } else {
-                    document.getElementById('passwordError').classList.add('hidden');
-                }
-
-                if (passwordConfirmation === "") {
-                    document.getElementById('confirmPasswordError').classList.remove('hidden');
-                    isValid = false;
-                } else {
-                    document.getElementById('confirmPasswordError').classList.add('hidden');
-                }
-
-                if (password !== passwordConfirmation) {
-                    document.getElementById('confirmPasswordError').classList.remove('hidden');
-                    isValid = false;
-                } else {
-                    document.getElementById('confirmPasswordError').classList.add('hidden');
-                }
-
-                return isValid;
-            }
-    </script>
-</body>
-</html>
+@endsection

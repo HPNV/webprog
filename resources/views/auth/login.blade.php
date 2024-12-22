@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    @vite('resources/css/app.css')
-</head>
-<body>
+@extends('layouts.app')
+
+@section('title', 'Book Your Stay')
+
+@section('content')
     <div class="font-sans">
         <div class="relative min-h-screen flex flex-col sm:justify-center items-center bg-blue-50">
             <div class="relative sm:max-w-3xl w-full">
@@ -16,33 +12,32 @@
                     <label for="" class="block mt-3 text-2xl text-blue-700 text-center font-bold">
                         Login
                     </label>
-
-                    <form id="loginForm" method="POST" action="{{ route('login') }}" class="mt-12" onsubmit="return validateForm()">
+                    <form method="POST" action="{{ route('login.submit') }}" class="mt-12">
                         @csrf
+
                         <div>
-                            <input id="email" type="email" placeholder="Email" class="mt-3 block w-full border-none bg-blue-100 h-14 rounded-xl shadow-lg hover:bg-blue-200 focus:bg-blue-300 focus:ring-0 pl-5">
-                            <span id="emailError" class="text-red-500 text-sm hidden">Email is required.</span>
+                            <input type="email" name="email" placeholder="   Email" class="mt-1 block w-full border-none bg-blue-100 h-14 rounded-xl shadow-lg hover:bg-blue-200 focus:bg-blue-300 focus:ring-0">
                         </div>
-        
-                        <div class="mt-8">                
-                            <input id="password" type="password" placeholder="Password" class="mt-1 pl-5 block w-full border-none bg-blue-100 h-14 rounded-xl shadow-lg hover:bg-blue-200 focus:bg-blue-300 focus:ring-0">
-                            <span id="passwordError" class="text-red-500 text-sm hidden">Password is required.</span>                           
+
+                        <div class="mt-8">
+                            <input type="password" name="password" placeholder="   Password" class="mt-1 block w-full border-none bg-blue-100 h-14 rounded-xl shadow-lg hover:bg-blue-200 focus:bg-blue-300 focus:ring-0">
                         </div>
 
                         <div class="mt-8 flex">
-                            <div class="w-full text-right">     
-                                    <a class="underline text-sm text-blue-600 hover:text-blue-900" href="#">
-                                        Forgot your password?
-                                    </a>                                  
+                            <div class="w-full text-right">
+                                <a class="underline text-sm text-blue-600 hover:text-blue-900" href="#">
+                                    Forgot your password?
+                                </a>
                             </div>
                         </div>
-        
+
                         <div class="mt-8">
                             <button class="bg-blue-600 w-full py-4 rounded-xl text-white shadow-xl hover:shadow-inner focus:outline-none transition duration-500 ease-in-out transform hover:-translate-x hover:scale-105">
                                 Login
                             </button>
                         </div>
-        
+                    </form>
+
                         <div class="flex mt-8 items-center text-center">
                             <hr class="border-blue-300 border-1 w-full rounded-md">
                             <label class="block font-medium text-sm text-blue-600 w-full">
@@ -50,7 +45,7 @@
                             </label>
                             <hr class="border-blue-300 border-1 w-full rounded-md">
                         </div>
-        
+
                         <div class="flex mt-8 justify-center w-full">
                             <button class="mr-5 bg-blue-700 border-none px-6 py-3 rounded-xl cursor-pointer text-white shadow-xl hover:shadow-inner transition duration-500 ease-in-out transform hover:-translate-x hover:scale-105">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
@@ -67,12 +62,12 @@
                                 </svg>
                             </button>
                         </div>
-        
+
                         <div class="mt-8">
                             <div class="flex justify-center items-center">
                                 <label class="mr-2 text-blue-600">New user?</label>
                                 <a href="/register" class="text-blue-700 transition duration-500 ease-in-out transform hover:-translate-x hover:scale-105">
-                                    Create an account!
+                                    Create an account
                                 </a>
                             </div>
                         </div>
@@ -81,68 +76,4 @@
             </div>
         </div>
     </div>
-
-    @if ($errors->any())
-        <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                const modal = document.getElementById('loginModal');
-                modal.classList.remove('hidden');
-            });
-        </script>
-    @endif
-
-
-    <div id="loginModal" class="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-50 hidden">
-        <div class="rounded-3xl shadow-2xl bg-white p-8 text-center sm:p-12">
-            <p class="text-sm font-semibold uppercase tracking-widest text-blue-500">
-                Email not registered
-            </p>
-
-            <h2 class="mt-6 text-3xl font-bold">You need to register first!</h2>
-
-            <a class="mt-8 inline-block w-full rounded-full bg-blue-600 py-4 text-sm font-bold text-white shadow-xl"
-              href="/register">Go to register</a>
-        </div>
-    </div>
-
-    <script>
-        const isLoggedIn = false;
-
-        document.addEventListener("DOMContentLoaded", function () {
-            if ({{ auth()->check() ? 'true' : 'false' }}) {
-                window.location.href = '{{ route('home') }}'; 
-            }
-        });
-
-        function validateForm() {
-            let isValid = true;
-
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-
-            if (email === "") {
-                document.getElementById('emailError').classList.remove('hidden');
-                isValid = false;
-            } else {
-                document.getElementById('emailError').classList.add('hidden');
-            }
-
-            if (password === "") {
-                document.getElementById('passwordError').classList.remove('hidden');
-                isValid = false;
-            } else {
-                document.getElementById('passwordError').classList.add('hidden');
-            }
-
-            return isValid;
-        }
-
-        window.onclick = function(event) {
-            const modal = document.getElementById('loginModal');
-            if (event.target == modal) {
-                modal.classList.add('hidden');
-            }
-        }
-    </script>
-</body>
-</html>
+@endsection

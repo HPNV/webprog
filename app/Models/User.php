@@ -2,36 +2,53 @@
 
 namespace App\Models;
 
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Hash;
 
-class User extends Model
+class User extends Authenticatable
 {
     use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     */
+    protected $primaryKey = 'userId';
+
+    // Indicate that 'userId' is UUID and not auto-incrementing
+    public $incrementing = false;
+
+    // Specify the primary key type as string (UUID)
+    protected $keyType = 'string';
+
+    // Mass-assignable attributes
     protected $fillable = [
         'name',
         'email',
         'password',
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     */
+    // Hidden attributes
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
+    // Automatically generate UUID when creating a new user
+    protected static function booted()
+    {
+        static::creating(function ($user) {
+            $user->userId = (string) Str::uuid();
+        });
+    }
+
     /**
-     * The attributes that should be cast.
+     * Hash the password when it is set.
      */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = bcrypt($value);
+    }
+
+    public function books()
+    {
+        return $this->hasMany(Book::class, 'userId');
+    }
 }

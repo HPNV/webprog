@@ -7,11 +7,13 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class AuthController extends Controller
 {
     public function showLoginForm()
     {
+        // Jika sudah login, redirect ke halaman profile
         if (Auth::check()) {
             return redirect()->route('profile');
         }
@@ -19,21 +21,28 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
+    // Proses login
     public function login(Request $request)
     {
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
-    
-        
-        if (Auth::attempt($request->only('email', 'password'))) {
+        // Validate login credentials
+        $email = $request->get('email');
+        $password = $request->get('password');
+
+        $user = User::where('email', $email)->first();
+        // Check if the user exists and the password is correct
+        if ($user && Hash::check($password, $user->password)) {
+            Auth::login($user);
+
             return redirect()->route('home');
         }
+        // If authentication fails
+        return back()->withErrors(['email' => 'Invalid credentials.']);
     }
 
+    // Tampilkan form register
     public function showRegisterForm()
     {
+        // Jika sudah login, redirect ke halaman profile
         if (Auth::check()) {
             return redirect()->route('profile');
         }
@@ -41,8 +50,10 @@ class AuthController extends Controller
         return view('auth.register');
     }
 
+    // Proses register
     public function register(Request $request)
     {
+        // Validasi input
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
@@ -55,24 +66,24 @@ class AuthController extends Controller
                         ->withInput();
         }
 
-        $existingUser = User::where('email', $request->email)->first();
-        if ($existingUser) {
-            return back()->with('email_exists', 'This email is already registered.');
-        }
-
-        $user = User::create([
+        // Menyimpan user baru
+        User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'userId' => (string) Str::uuid(),
+            'password' => $request->password,
         ]);
 
+        $user = User::where('email', $request->email)->first();
         Auth::login($user);
 
         return redirect()->route('home');
     }
 
+    // Tampilkan halaman profile
     public function showProfile()
     {
+        // Jika belum login, arahkan ke halaman login
         if (!Auth::check()) {
             return redirect()->route('login');
         }
@@ -80,6 +91,7 @@ class AuthController extends Controller
         return view('profile');
     }
 
+    // Logout user
     public function logout()
     {
         Auth::logout();
