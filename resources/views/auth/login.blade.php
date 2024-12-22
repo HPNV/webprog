@@ -72,7 +72,7 @@
                             <div class="flex justify-center items-center">
                                 <label class="mr-2 text-blue-600">New user?</label>
                                 <a href="/register" class="text-blue-700 transition duration-500 ease-in-out transform hover:-translate-x hover:scale-105">
-                                    Create an account
+                                    Create an account!
                                 </a>
                             </div>
                         </div>
