@@ -6,7 +6,6 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookController;
 use Illuminate\Support\Facades\Route;
 
-// Public routes
 Route::get('/', [PlaceController::class, 'index'])->name('home');
 Route::get('places/{placeId}', [PlaceController::class, 'show'])->name('places.show');
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
@@ -15,7 +14,6 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
 Route::post('/register', [AuthController::class, 'register']);
 
-// Authenticated routes
 Route::middleware('auth')->group(function () {
     Route::get('profile', [AuthController::class, 'showProfile'])->name('profile');
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
@@ -24,6 +22,5 @@ Route::middleware('auth')->group(function () {
     Route::get('/history', [BookController::class, 'history'])->name('history');
 });
 
-// API routes
 Route::get('api/hotels/{hotelId}/rooms', [HotelController::class, 'getRooms']);
 

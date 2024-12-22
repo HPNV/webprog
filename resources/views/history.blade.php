@@ -9,8 +9,8 @@
         </div>
     </div>
 
-    <section class="container mx-auto p-6 md:flex md:space-x-6 mt-8">
-        <div class="md:w-full bg-white p-6 rounded-lg shadow-lg">
+    <section class="container mx-auto p-6 mt-8">
+        <div class="bg-white p-6 rounded-lg shadow-lg">
             @if(session('success'))
                 <div class="bg-green-100 text-green-700 border border-green-400 rounded-lg p-4 mb-6">
                     {{ session('success') }}
@@ -26,29 +26,39 @@
                     You have no bookings yet.
                 </div>
             @else
-                <div class="overflow-x-auto">
-                    <table class="table-auto w-full text-left bg-gradient-to-r from-gray-100 to-white rounded-lg shadow-lg">
-                        <thead>
-                            <tr>
-                                <th class="py-2 px-4 text-xl font-medium text-gray-700">Place</th>
-                                <th class="py-2 px-4 text-xl font-medium text-gray-700">Hotel</th>
-                                <th class="py-2 px-4 text-xl font-medium text-gray-700">Room</th>
-                                <th class="py-2 px-4 text-xl font-medium text-gray-700">Check-in Date</th>
-                                <th class="py-2 px-4 text-xl font-medium text-gray-700">Check-out Date</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($books as $book)
-                                <tr class="hover:bg-gray-50">
-                                    <td class="py-2 px-4">{{ $book->place->name }}</td>
-                                    <td class="py-2 px-4">{{ $book->hotel->name }}</td>
-                                    <td class="py-2 px-4">{{ $book->room->name }}</td>
-                                    <td class="py-2 px-4">{{ \Carbon\Carbon::parse($book->date)->format('d-m-Y') }}</td>
-                                    <td class="py-2 px-4">{{ \Carbon\Carbon::parse($book->date)->format('d-m-Y') }}</td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                <div class="space-y-6">
+                    @foreach ($books as $book)
+                        <article class="flex items-start gap-6 p-6 rounded-xl border-2 border-gray-100 bg-white shadow-lg">
+                            <a href="#" class="block shrink-0">
+                                <img alt="{{ $book->place->name }}"src="{{ $book->place->image_url ?? 'https://via.placeholder.com/800x400' }}"class="w-64 h-48 rounded-lg object-cover"/>
+                            </a>
+
+                            <div class="flex flex-col justify-between w-full">
+                                <div>
+                                    <h3 class="text-2xl font-bold text-gray-800">
+                                        <a href="#" class="hover:underline">{{ $book->place->name }}</a>
+                                    </h3>
+                                    <p class="mt-2 text-sm text-gray-600">
+                                        Hotel: {{ $book->hotel->name }}<br>
+                                        Room: {{ $book->room->name }}
+                                    </p>
+                                    <p class="mt-4 text-sm text-gray-500">
+                                        Check-in: {{ \Carbon\Carbon::parse($book->check_in)->format('d M Y') }}<br>
+                                        Check-out: {{ \Carbon\Carbon::parse($book->check_out)->format('d M Y') }}
+                                    </p>
+                                </div>
+
+                                <div class="flex justify-end mt-4">
+                                    <strong class="-mb-[2px] -me-[2px] inline-flex items-center gap-1 rounded-ee-xl rounded-ss-xl bg-green-600 px-3 py-1.5 text-white">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+                                        </svg>
+                                        <span class="text-[10px] font-medium sm:text-xs">Booked!</span>
+                                    </strong>
+                                </div>
+                            </div>
+                        </article>
+                    @endforeach
                 </div>
             @endif
         </div>

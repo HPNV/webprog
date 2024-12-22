@@ -16,11 +16,11 @@
                         @csrf
 
                         <div>
-                            <input type="email" name="email" placeholder="   Email" class="mt-1 block w-full border-none bg-blue-100 h-14 rounded-xl shadow-lg hover:bg-blue-200 focus:bg-blue-300 focus:ring-0">
+                            <input type="email" name="email" placeholder="Email" class="pl-5 mt-1 block w-full border-none bg-blue-100 h-14 rounded-xl shadow-lg hover:bg-blue-200 focus:bg-blue-300 focus:ring-0">
                         </div>
 
                         <div class="mt-8">
-                            <input type="password" name="password" placeholder="   Password" class="mt-1 block w-full border-none bg-blue-100 h-14 rounded-xl shadow-lg hover:bg-blue-200 focus:bg-blue-300 focus:ring-0">
+                            <input type="password" name="password" placeholder="Password" class="pl-5 mt-1 block w-full border-none bg-blue-100 h-14 rounded-xl shadow-lg hover:bg-blue-200 focus:bg-blue-300 focus:ring-0">
                         </div>
 
                         <div class="mt-8 flex">
