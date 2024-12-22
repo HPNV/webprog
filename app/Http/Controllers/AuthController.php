@@ -74,10 +74,10 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        // Login user setelah register
-        Auth::attempt($request->only('email', 'password'));
+        $user = User::where('email', $request->email)->first();
+        Auth::login($user);
 
-        return redirect()->route('profile');
+        return redirect()->route('home');
     }
 
     // Tampilkan halaman profile
