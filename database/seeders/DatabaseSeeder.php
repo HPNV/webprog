@@ -17,7 +17,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             PlaceSeeder::class,
             HotelSeeder::class,
-            RoomSeeder::class
+            RoomSeeder::class,
+            UserSeeder::class
         ]);
 
         // Optionally create a specific user
