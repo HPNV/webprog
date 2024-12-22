@@ -27,5 +27,11 @@ class Place extends Model
     protected $casts = [
         'galleryImages' => 'array',
     ];
+
+
+    public function hotels()
+    {
+        return $this->belongsToMany(Hotel::class, 'placeHotels', 'placeId', 'hotelId');
+    }
 }
 

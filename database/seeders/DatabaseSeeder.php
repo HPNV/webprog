@@ -14,7 +14,11 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         User::factory()->count(10)->create();
-        $this->call(PlaceSeeder::class);
+        $this->call([
+            PlaceSeeder::class,
+            HotelSeeder::class,
+            RoomSeeder::class
+        ]);
 
         // Optionally create a specific user
         // User::factory()->create([
