@@ -16,18 +16,18 @@
                         @csrf
 
                         <div>
-                            <input type="email" placeholder="   Email" class="mt-1 block w-full border-none bg-blue-100 h-14 rounded-xl shadow-lg hover:bg-blue-200 focus:bg-blue-300 focus:ring-0">
+                            <input type="email" name="email" placeholder="   Email" class="mt-1 block w-full border-none bg-blue-100 h-14 rounded-xl shadow-lg hover:bg-blue-200 focus:bg-blue-300 focus:ring-0">
                         </div>
 
                         <div class="mt-8">
-                            <input type="password" placeholder="   Password" class="mt-1 block w-full border-none bg-blue-100 h-14 rounded-xl shadow-lg hover:bg-blue-200 focus:bg-blue-300 focus:ring-0">
+                            <input type="password" name="password" placeholder="   Password" class="mt-1 block w-full border-none bg-blue-100 h-14 rounded-xl shadow-lg hover:bg-blue-200 focus:bg-blue-300 focus:ring-0">
                         </div>
 
                         <div class="mt-8 flex">
                             <div class="w-full text-right">
-                                    <a class="underline text-sm text-blue-600 hover:text-blue-900" href="#">
-                                        Forgot your password?
-                                    </a>
+                                <a class="underline text-sm text-blue-600 hover:text-blue-900" href="#">
+                                    Forgot your password?
+                                </a>
                             </div>
                         </div>
 
@@ -36,6 +36,7 @@
                                 Login
                             </button>
                         </div>
+                    </form>
 
                         <div class="flex mt-8 items-center text-center">
                             <hr class="border-blue-300 border-1 w-full rounded-md">

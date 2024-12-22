@@ -13,7 +13,7 @@
                 <a href="/">
                     <span class="text-xl font-bold">Explora || </span>
                     @auth
-                        <span class="text-lg font-bold">Welcome, {{ Auth::user()->name }}</span>
+                        <span class="text-lg font-bold">Welcome, {{ Auth::user()->name}}</span>
                     @else
                         <span class="text-lg font-bold">Welcome, Guest</span>
                     @endauth

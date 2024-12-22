@@ -23,13 +23,20 @@ class AuthController extends Controller
     // Proses login
     public function login(Request $request)
     {
-        // Validasi login
-        $credentials = $request->only('email', 'password');
-        dd($credentials);
-        if (Auth::attempt($credentials)) {
-            return redirect()->route('profile');
+        // Validate login credentials
+        $email = $request->get('email');
+        $password = $request->get('password');
+
+        $user = User::where('email', $email)->first();
+
+        // Check if the user exists and the password is correct
+        if ($user && Hash::check($password, $user->password)) {
+            Auth::login($user);
+
+            return redirect()->route('home');
         }
 
+        // If authentication fails
         return back()->withErrors(['email' => 'Invalid credentials.']);
     }
 
