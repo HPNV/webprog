@@ -70,7 +70,7 @@
             </div>
 
             <div class="mt-8">
-                <a href="{{ route('places.book', ['placeId' => $place->placeId]) }}" class="w-full bg-orange-500 text-white py-3 px-6 rounded-lg text-lg font-semibold text-center hover:bg-orange-600 transition duration-300 block text -center">
+                <a href="{{ route('places.book', ['placeId' => $place->placeId]) }}" class="w-full bg-blue-500 text-white py-3 px-6 rounded-lg text-lg font-semibold text-center hover:bg-blue-600 transition duration-300 block text -center">
                     Book Now
                 </a>
             </div>
