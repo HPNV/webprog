@@ -13,55 +13,59 @@
 
     <section class="container mx-auto p-6 md:flex md:space-x-6 mt-8">
         <div class="md:w-2/3">
-            <h2 class="text-3xl font-semibold text-gray-900 mb-4">About {{ $place->name }}</h2>
-            <p class="text-gray-600 leading-relaxed mb-6">{{ $place->description }}</p>
-            <h3 class="text-2xl font-semibold text-gray-900 mb-4">Gallery</h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <h2 class="text-3xl font-semibold text-gray-900 mb-6">About {{ $place->name }}</h2>
+            <p class="text-gray-700 text-lg leading-relaxed mb-8">{{ $place->description }}</p>
+
+            <h3 class="text-2xl font-semibold text-gray-900 mb-6">Gallery</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach($place->galleryImages as $image)
-                    <img src="{{ $image }}" alt="Gallery Image" class="rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300">
+                    <div class="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
+                        <img src="{{ $image }}" alt="Gallery Image" class="w-full h-full object-cover transition duration-500 group-hover:opacity-80 cursor-pointer" onclick="openModal('{{ $image }}')">
+                    </div>
                 @endforeach
             </div>
         </div>
 
-        <div class="md:w-1/3 mt-8 md:mt-0 bg-white p-6 rounded-lg shadow-lg">
-            <div class="mb-6">
-                <button class="w-full bg-orange-500 text-white py-3 px-6 rounded-lg text-lg font-semibold hover:bg-orange-600 transition duration-300">Book Now</button>
-            </div>
-
-            <div class="mb-6">
-                <h3 class="text-xl font-semibold text-gray-900 mb-4">Details</h3>
-                <p class="text-gray-600 mb-2"><strong>Location:</strong> {{ $place->location }}</p>
-                <p class="text-gray-600 mb-2"><strong>Rating:</strong> {{ $place->rating }} / 5</p>
-                <p class="text-gray-600 mb-2"><strong>Category:</strong> {{ $place->category }}</p>
-            </div>
-
-            <div class="mb-6">
-                <h3 class="text-xl font-semibold text-gray-900 mb-4">Location Map</h3>
-                <div class="h-64 bg-gray-200 rounded-lg shadow-inner">
-                    <img src="{{ $place->mapImage }}" alt="Map" class="w-full h-full object-cover rounded-lg">
-                </div>
+        <div id="imageModal" class="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 hidden z-50">
+            <div class="relative max-w-xl bg-white rounded-lg p-6">
+                <button type="button" class="absolute top-2 right-2 rounded-full bg-white text-gray-500 p-2" onclick="closeModal()">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+                <img id="modalImage" src="" alt="Modal Image" class="w-full h-full object-cover rounded-lg">
             </div>
         </div>
-    </section>
 
-    <section class="container mx-auto p-6 mt-8 bg-gray-100 rounded-lg shadow-lg">
-        <h3 class="text-2xl font-semibold text-gray-900 mb-6">User Reviews</h3>
+        <script>
+            function openModal(imageUrl) {
+                document.getElementById('modalImage').src = imageUrl;
+                document.getElementById('imageModal').classList.remove('hidden');
+            }
 
-        @foreach($place->reviews as $review)
-            <div class="bg-white p-4 rounded-lg mb-4 shadow-sm">
-                <div class="flex items-center justify-between mb-2">
-                    <h4 class="font-semibold text-gray-900">{{ $review->user }}</h4>
-                    <span class="text-sm text-gray-600">{{ $review->date }}</span>
-                </div>
-                <p class="text-gray-600 mb-2">{{ $review->text }}</p>
-                <span class="text-yellow-500">{{ str_repeat('★', $review->rating) }}</span>
+            function closeModal() {
+                document.getElementById('imageModal').classList.add('hidden');
+            }
+        </script>
+
+        <div class="md:w-1/3 mt-8 md:mt-0 bg-gray-50 p-6 rounded-lg shadow-xl">
+            <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Details</h3>
+            <div class="mb-8">
+                <p class="text-gray-700 text-lg mb-2"><strong>📍 Location:</strong> {{ $place->location }}</p>
+                <p class="text-gray-700 text-lg mb-2"><strong>⭐ Rating:</strong> {{ $place->rating }} / 5</p>
+                <p class="text-gray-700 text-lg"><strong>📂 Category:</strong> {{ $place->category }}</p>
             </div>
-        @endforeach
 
-        <div class="mt-6">
-            <h4 class="text-xl font-semibold text-gray-900 mb-4">Leave a Review</h4>
-            <textarea class="w-full p-4 border border-gray-300 rounded-lg focus:border-primary focus:ring-1 focus:ring-primary" rows="4" placeholder="Write your review..."></textarea>
-            <button class="mt-4 bg-blue-600 text-white py-2 px-6 rounded-lg hover:bg-blue-700 transition duration-300">Submit</button>
+            <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Location Map</h3>
+            <div class="h-64 bg-gray-200 rounded-lg shadow-inner">
+                    <img src="{{ $place->mapImage }}" alt="Map" class="w-full h-full object-cover rounded-lg">
+            </div>
+
+            <div class="mt-8">
+                <button class="w-full bg-orange-500 text-white py-3 px-6 rounded-lg text-lg font-bold hover:bg-orange-600 shadow-lg transition duration-300">
+                    Book Now
+                </button>
+            </div>
         </div>
     </section>
 @endsection

@@ -9,16 +9,15 @@ class PlaceController extends Controller
 {
     public function index()
     {
-        $places = Place::all(); // Fetch all places
-        $randomPlaces = Place::inRandomOrder()->limit(3)->get(); // Fetch 3 random places
+        $places = Place::all();
+        $randomPlaces = Place::inRandomOrder()->limit(3)->get();
         
-        return view('welcome', compact('places', 'randomPlaces')); // Pass both to the view
+        return view('welcome', compact('places', 'randomPlaces'));
     }
 
-    // Method to show a specific place's details
     public function show($id)
     {
-        $place = Place::where('placeId', $id)->firstOrFail(); // Fetch single place
-        return view('places.show', compact('place')); // Ensure 'place' is an object, not an array
+        $place = Place::where('placeId', $id)->firstOrFail();
+        return view('detail', compact('place'));
     }
 }
