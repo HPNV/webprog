@@ -24,4 +24,9 @@ class Room extends Model
     {
         return $this->belongsToMany(Hotel::class, 'hotelRooms', 'hotelId', 'roomId');
     }
+
+    public function books()
+    {
+        return $this->hasMany(Book::class, 'roomId');
+    }
 }

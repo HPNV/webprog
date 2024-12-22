@@ -12,13 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('books', function (Blueprint $table) {
-            $table->string('id')->primary();
-            $table->uuid('hotelId');
+            $table->uuid('bookId')->primary();
+            $table->uuid('placeId');
             $table->uuid('roomId');
-            $table->boolean('available');
+            $table->uuid('userId');
+            $table->date('date');
             $table->timestamps();
-
-            $table->primary(['hotelId', 'roomId']);
         });
     }
 
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sessions');
+        Schema::dropIfExists('books');
     }
 };

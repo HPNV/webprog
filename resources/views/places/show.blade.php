@@ -31,9 +31,9 @@
 
             <div class="mb-6">
                 <h3 class="text-xl font-semibold text-gray-900 mb-4">Details</h3>
-                <p class="text-gray-600 mb-2"><strong>Location:</strong> {{ $place->location }}</p>
+                <p class="text-gray-600 mb-2"><strong>Location:</strong> {{ $place->address }}</p>
                 <p class="text-gray-600 mb-2"><strong>Rating:</strong> {{ $place->rating }} / 5</p>
-                <p class="text-gray-600 mb-2"><strong>Category:</strong> {{ $place->category }}</p>
+                <p class="text-gray-600 mb-2"><strong>Description:</strong> {{ $place->description }}</p>
             </div>
 
             <div class="mb-6">
