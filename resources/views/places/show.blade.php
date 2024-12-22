@@ -25,9 +25,9 @@
         </div>
 
         <div class="md:w-1/3 mt-8 md:mt-0 bg-white p-6 rounded-lg shadow-lg">
-            <div class="mb-6">
-                <button class="w-full bg-orange-500 text-white py-3 px-6 rounded-lg text-lg font-semibold hover:bg-orange-600 transition duration-300">Book Now</button>
-            </div>
+            <a href="{{ route('places.book', ['placeId' => $place->placeId]) }}" class="w-full bg-orange-500 text-white py-3 px-6 rounded-lg text-lg font-semibold hover:bg-orange-600 transition duration-300 block text-center">
+                Book Now
+            </a>
 
             <div class="mb-6">
                 <h3 class="text-xl font-semibold text-gray-900 mb-4">Details</h3>

@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('placesHotels', function (Blueprint $table) {
+        Schema::create('placeHotels', function (Blueprint $table) {
             $table->uuid('placeId');
             $table->uuid('hotelId');
             $table->timestamps();

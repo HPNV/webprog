@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('hotelRooms', function (Blueprint $table) {
             $table->uuid('hotelId');
             $table->uuid('roomId');
+            $table->boolean('available');
             $table->timestamps();
 
             $table->primary(['hotelId', 'roomId']);
