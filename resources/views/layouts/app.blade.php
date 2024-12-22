@@ -10,11 +10,14 @@
     <nav class="bg-gradient-to-r from-blue-600 to-primary text-white sticky top-0 z-50 p-4 shadow-lg">
         <div class="container mx-auto flex justify-between items-center">
             <div>
-
                 <span class="text-xl font-bold">Explora || </span>
-                <span class="text-lg font-bold">Welcome, HPNV</span>
+                @auth
+                    <span class="text-lg font-bold">Welcome, {{ Auth::user()->name }}</span>
+                @else
+                    <span class="text-lg font-bold">Welcome, Guest</span>
+                @endauth
             </div>
-                <ul class="flex space-x-4">
+            <ul class="flex space-x-4">
                 @guest
                     <li><a href="{{ route('login') }}" class="hover:text-gray-300 transition-colors duration-300 font-bold">Login</a></li>
                     <li><a href="{{ route('register') }}" class="hover:text-gray-300 transition-colors duration-300 font-bold">Register</a></li>
@@ -25,7 +28,7 @@
                         <li><a href="#history" class="hover:text-gray-300 transition-colors duration-300 font-bold">History</a></li>
                         <li><a href="{{ route('profile') }}" class="hover:text-gray-300 transition-colors duration-300 font-bold">Profile</a></li>
                 @endauth
-             </ul>
+            </ul>
         </div>
     </nav>
 
