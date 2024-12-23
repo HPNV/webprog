@@ -12,26 +12,21 @@ class User extends Authenticatable
 
     protected $primaryKey = 'userId';
 
-    // Indicate that 'userId' is UUID and not auto-incrementing
     public $incrementing = false;
 
-    // Specify the primary key type as string (UUID)
     protected $keyType = 'string';
 
-    // Mass-assignable attributes
     protected $fillable = [
         'name',
         'email',
         'password',
     ];
 
-    // Hidden attributes
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
-    // Automatically generate UUID when creating a new user
     protected static function booted()
     {
         static::creating(function ($user) {
@@ -39,9 +34,6 @@ class User extends Authenticatable
         });
     }
 
-    /**
-     * Hash the password when it is set.
-     */
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = bcrypt($value);

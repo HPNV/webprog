@@ -27,7 +27,7 @@ class Book extends Model
     protected static function booted()
     {
         static::creating(function ($book) {
-            $book->bookId = (string) Str::uuid(); // Generate a UUID for bookId
+            $book->bookId = (string) Str::uuid();
         });
     }
 

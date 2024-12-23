@@ -6,7 +6,7 @@
     <title>Webprog</title>
     @vite('resources/css/app.css')
 </head>
-<body class="bg-gray-100 text-gray-900">
+<body class="bg-gray-100 text-gray-900 min-h-screen flex flex-col">
     <nav class="bg-gradient-to-r from-blue-600 to-primary text-white sticky top-0 z-50 p-4 shadow-lg">
         <div class="container mx-auto flex justify-between items-center">
             <div>
@@ -27,7 +27,7 @@
                 @auth
                     <li><a href="/" class="hover:text-gray-300 transition-colors duration-300 font-bold">Places</a></li>
                     <li><a href="/history" class="hover:text-gray-300 transition-colors duration-300 font-bold">History</a></li>
-                    <li><a href="#profile" class="hover:text-gray-300 transition-colors duration-300 font-bold">Profile</a></li>
+                    <li><a href="/profile" class="hover:text-gray-300 transition-colors duration-300 font-bold">Profile</a></li>
                     <li>
                         <form action="{{ route('logout') }}" method="POST" class="inline">
                             @csrf

@@ -3,7 +3,28 @@
 @section('title', 'Home Page')
 
 @section('content')
-    <section id="places" class="mb-8">
+    <section class="overflow-hidden bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 mb-10">
+        <div class="p-8 md:p-12 lg:px-16 lg:py-24 flex flex-col items-center text-center">
+            <h2 class="text-3xl font-extrabold sm:text-4xl md:text-5xl text-blue-300 mb-4">
+                Discover <span class="text-white">Beautiful Destinations</span>
+            </h2>
+
+            <p class="max-w-lg text-white/90 mt-4 md:mt-6 md:text-lg leading-relaxed">
+                Embark on an unforgettable journey to explore stunning locations worldwide. Let us guide you to your next adventure!
+            </p>
+
+            <div class="mt-6 sm:mt-8">
+                <a
+                    href="#places"
+                    class="inline-block rounded-full bg-white px-12 py-3 text-sm font-medium text-blue-700 transition hover:bg-blue-100 focus:outline-none focus:ring focus:ring-blue-400"
+                >
+                    See Places
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="places" class="mb-20">
         <div class="flex flex-col md:flex-row items-center mb-6 px-4">
             <h2 class="text-gray-900 text-2xl font-semibold mb-4 md:mb-0">Recommended Places to Go</h2>
         </div>
