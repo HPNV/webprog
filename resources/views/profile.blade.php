@@ -23,10 +23,17 @@
 
                             <p class="text-lg text-gray-600">Email: <span class="text-gray-800">{{ Auth::user()->email }}</span></p>
 
-                            <section class="mt-4">
+                            <section class="mt-4 mb-6">
                                 <h2 class="text-xl font-semibold text-gray-700 mb-2">Password</h2>
                                 <p class="text-gray-600">For security reasons, your password is hidden.</p>
                             </section>
+                            
+                            <form action="{{ route('logout') }}" method="POST" class="w-full mb-5">
+                                @csrf
+                                <button type="submit" class="bg-blue-600 w-full py-4 rounded-xl text-white shadow-lg hover:shadow-inner focus:outline-none transition duration-500 ease-in-out transform hover:-translate-x hover:scale-105">
+                                    Logout
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>
