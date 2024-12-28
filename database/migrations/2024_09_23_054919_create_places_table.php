@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('rating');
             $table->json('galleryImages');
             $table->string('address');
-            $table->string('description');
+            $table->text('description');
             $table->string('email');
             $table->string('phone');
             $table->timestamps();

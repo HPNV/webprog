@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Place;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class PlaceSeeder extends Seeder
 {
@@ -20,6 +21,8 @@ class PlaceSeeder extends Seeder
             'name' => "Taman Nasional Way Kambas",
             'imagePath' => 'https://lh3.googleusercontent.com/p/AF1QipPpx9jCsqxFduqY9SlpsDGVo1GNeXk9KAaKyq8O=s294-w294-h220-k-no',
             'rating' => '4.3',
+            'email' => 'tamannasional@gmail.com',
+            'phone' => '08123456789',
             'galleryImages' => [
                 'https://lh3.googleusercontent.com/p/AF1QipNHDJsOCLlhRfFAquNPat2ZxQYEL2dVmHFr4jmr=s294-w294-h220-k-no',
                 'https://cdn.idntimes.com/content-images/post/20181224/taman-nasional-way-kambas-b24de22cd86f7678c85137ec98f65cce_600x400.jpg',
@@ -34,6 +37,8 @@ class PlaceSeeder extends Seeder
             'name' => "Labengki Island",
             'imagePath' => 'https://blog-static.mamikos.com/wp-content/uploads/2019/10/Pulau-Labengki.jpg',
             'rating' => '4.3',
+            'email' => 'lebengkiisland@gmail.com',
+            'phone' => '08123456789',
             'galleryImages' => [
                 'https://www.citilink.co.id/uploads/44b1fa5f-28f3-4d8c-8d0b-4b93cb980b56/shutterstock_1213360378_624x497.jpg',
                 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhm4u6cHJtDtRKsrdQlvk9lqHp2ZvU9aBEqQ&s',
@@ -48,6 +53,8 @@ class PlaceSeeder extends Seeder
             'name' => "Gili Trawangan",
             'imagePath' => 'https://www.gotravelaindonesia.com/wp-content/uploads/Alasan-Mengunjungi-Gili-Trawangan.jpg',
             'rating' => '4.5',
+            'email' => 'tarawangan@gmail.com',
+            'phone' => '08123456789',
             'galleryImages' => [
                 'https://torch.id/cdn/shop/articles/Hero_Banner.webp?v=1710835467&width=1100',
                 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8GecCc_dTsXAeVQxcrzXH9witEQbmgWGsPA&s',
@@ -62,6 +69,8 @@ class PlaceSeeder extends Seeder
             'name' => "Belitung Island",
             'imagePath' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOyFNQ1pdCfzigB53KLSQiwS5sEQGz6YxdlQ&s',
             'rating' => '4.5',
+            'email' => 'belitungisland@gmail.com',
+            'phone' => '08123456789',
             'galleryImages' => [
                 'https://asset-2.tstatic.net/belitung/foto/bank/images/20220824-wisata-belitung-pulau-memperak.jpg',
                 'https://images.trvl-media.com/lodging/50000000/49150000/49146900/49146846/437e20b0.jpg?impolicy=fcrop&w=357&h=201&p=1&q=medium',
@@ -76,6 +85,8 @@ class PlaceSeeder extends Seeder
             'name' => "Mandalika",
             'imagePath' => 'https://www.indonesia.travel/content/dam/indtravelrevamp/en/destinations/revisi-2020/revamp-image/mandalika/merese-hill.jpg',
             'rating' => '4.7',
+            'email' => 'mandalika@gmail.com',
+            'phone' => '08123456789',
             'galleryImages' => [
                 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkDSn-I2wGVA-0E7429jcdoOsBaYs6s_WB6Q&s',
                 'https://asset.kompas.com/crops/wzksWBojpTQ7yWPy1R8DzcSQm-Y=/0x61:740x554/1200x800/data/photo/2021/03/19/60543552897ed.jpg',
