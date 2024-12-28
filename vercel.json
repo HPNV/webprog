@@ -6,6 +6,10 @@
     },
     "routes": [
         {
+            "src": "/(.*)\\.(css|js|jpg|jpeg|png|gif|svg|webp|ico|woff|woff2|ttf|eot|otf)",
+            "dest": "/public/$1"
+        },
+        {
             "src": "/(.*)",
             "dest": "/api/index.php"
         }
